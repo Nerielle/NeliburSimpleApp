@@ -45,3 +45,10 @@ Temporary Items
 /obj
 /Properties
 /packages
+/Contracts/bin
+/Contracts/Properties
+/Contracts/obj
+/Client/obj
+/Client/Properties
+/Client/bin
+/Client

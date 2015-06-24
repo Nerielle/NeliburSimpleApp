@@ -6,7 +6,7 @@ namespace Nelibur
     {
         public object Get(GetSummRequest request)
         {
-            return request.FirstValue + request.SecondValue;
+            return new SummResponse() {Result = request.FirstValue + request.SecondValue};
         }
     }
 }
