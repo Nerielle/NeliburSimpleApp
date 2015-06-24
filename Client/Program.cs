@@ -15,10 +15,7 @@ namespace Client
             {
                 Console.WriteLine("Enter 2 integer values separated by comma..");
                 string[] values = Console.ReadLine().Split(',');
-                if (values.Length != 2)
-                {
-                    continue;
-                }
+               
                 if (!CheckValues(values))
                 {
                     continue;
@@ -27,16 +24,19 @@ namespace Client
             }
         }
 
-        private static void Calculate(SoapServiceClient client, string[] values)
+        private static void Calculate(SoapServiceClient client, IList<string> values)
         {
             var sumValuesRequest = new GetSummRequest(int.Parse(values[0]), int.Parse(values[1]));
             var response = client.Get<SummResponse>(sumValuesRequest);
             Console.WriteLine("Sum: {0}", response.Result);
-            Console.ReadLine();
         }
 
-        private static bool CheckValues(IEnumerable<string> values)
+        private static bool CheckValues(IList<string> values)
         {
+            if (values.Count() != 2)
+            {
+                return false;
+            }
             int result;
             return values.All(x => int.TryParse(x, out result));
         }
