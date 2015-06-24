@@ -7,6 +7,5 @@ namespace Contracts
     {
         [DataMember]
         public int Result { get; set; }
- 
     }
 }
