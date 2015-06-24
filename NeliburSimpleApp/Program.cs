@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+using Contracts;
 using Nelibur.ServiceModel.Services;
 using Nelibur.ServiceModel.Services.Default;
 

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Nelibur
+namespace Contracts
 {
     [DataContract]
     public class GetSummRequest

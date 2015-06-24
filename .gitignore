@@ -52,3 +52,10 @@ Temporary Items
 /Client/Properties
 /Client/bin
 /Client
+/Client/Properties
+/Client/bin
+/Client/obj
+NeliburSimpleApp/bin/Debug/NeliburSimpleApp.exe.config
+NeliburSimpleApp/bin/Debug/NeliburSimpleApp.vshost.exe.config
+NeliburSimpleApp/bin/Debug/NeliburSimpleApp.vshost.exe.config
+NeliburSimpleApp/obj/Debug/NeliburSimpleApp.csproj.FileListAbsolute.txt

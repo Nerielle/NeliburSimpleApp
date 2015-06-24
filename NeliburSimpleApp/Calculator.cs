@@ -1,4 +1,5 @@
-﻿using Nelibur.ServiceModel.Services.Operations;
+﻿using Contracts;
+using Nelibur.ServiceModel.Services.Operations;
 
 namespace Nelibur
 {
