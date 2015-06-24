@@ -8,7 +8,7 @@ namespace Nelibur
 {
     internal class Program
     {
-        public Program()
+        static Program()
         {
             NeliburSoapService.Configure(x => x.Bind<GetSummRequest, Calculator>());
         }
