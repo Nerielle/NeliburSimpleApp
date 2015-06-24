@@ -1,0 +1,15 @@
+E:\Projects\Nelibur\Nelibur\bin\Debug\Nelibur.exe.config
+E:\Projects\Nelibur\Nelibur\bin\Debug\Nelibur.exe
+E:\Projects\Nelibur\Nelibur\bin\Debug\Nelibur.pdb
+E:\Projects\Nelibur\Nelibur\obj\Debug\NeliburSimpleApp.csprojResolveAssemblyReference.cache
+E:\Projects\Nelibur\Nelibur\obj\Debug\Nelibur.exe
+E:\Projects\Nelibur\Nelibur\obj\Debug\Nelibur.pdb
+E:\Projects\Nelibur\Nelibur\bin\Debug\NeliburSimpleApp.exe.config
+E:\Projects\Nelibur\NeliburSimpleApp\bin\Debug\NeliburSimpleApp.exe.config
+E:\Projects\Nelibur\NeliburSimpleApp\obj\Debug\NeliburSimpleApp.csprojResolveAssemblyReference.cache
+E:\Projects\Nelibur\NeliburSimpleApp\bin\Debug\NeliburSimpleApp.exe
+E:\Projects\Nelibur\NeliburSimpleApp\bin\Debug\NeliburSimpleApp.pdb
+E:\Projects\Nelibur\NeliburSimpleApp\obj\Debug\NeliburSimpleApp.exe
+E:\Projects\Nelibur\NeliburSimpleApp\obj\Debug\NeliburSimpleApp.pdb
+E:\Projects\Nelibur\NeliburSimpleApp\bin\Debug\Nelibur.dll
+E:\Projects\Nelibur\NeliburSimpleApp\bin\Debug\Nelibur.Sword.dll
