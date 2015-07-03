@@ -2,14 +2,13 @@
 
 namespace Contracts
 {
-    [KnownType(typeof(GetSummRequest))]
-    [KnownType(typeof(CleanMemoryRequest))]
-    [KnownType(typeof(SaveInMemoryRequest))]
-    [KnownType(typeof(ReadFromMemoryRequest))]
-    [KnownType(typeof(AddToValueInMemoryRequest))]
+    [KnownType(typeof (GetSummRequest))]
+    [KnownType(typeof (CleanMemoryRequest))]
+    [KnownType(typeof (SaveInMemoryRequest))]
+    [KnownType(typeof (ReadFromMemoryRequest))]
+    [KnownType(typeof (AddToValueInMemoryRequest))]
     [DataContract]
     public class BaseRequest
     {
-         
     }
 }

@@ -3,8 +3,7 @@
 namespace Contracts
 {
     [DataContract]
-    public class CleanMemoryRequest:BaseRequest
+    public class CleanMemoryRequest : BaseRequest
     {
-         
     }
 }

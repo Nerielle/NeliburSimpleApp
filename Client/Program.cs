@@ -50,7 +50,7 @@ namespace Client
                 case MemoryCommands.Mc:
                     {
                         var request = new CleanMemoryRequest();
-                        client.Post(request);
+                        client.Delete(request);
                         Console.WriteLine("The memory is cleared..");
                         break;
                     }
@@ -63,7 +63,7 @@ namespace Client
                     }
                 case MemoryCommands.Ms:
                     {
-                        var val = GetIntValueFromCommand(values);
+                        int val = GetIntValueFromCommand(values);
 
                         var request = new SaveInMemoryRequest {Value = val};
                         client.Post(request);
@@ -72,9 +72,9 @@ namespace Client
                     }
                 case MemoryCommands.Mp:
                     {
-                        var val = GetIntValueFromCommand(values);
-                        client.Post(new AddToValueInMemoryRequest(){Value = val});
-                        Console.WriteLine("{0} was added to the value in memory.", val );
+                        int val = GetIntValueFromCommand(values);
+                        client.Put(new AddToValueInMemoryRequest {Value = val});
+                        Console.WriteLine("{0} was added to the value in memory.", val);
                         break;
                     }
                 default:

@@ -3,8 +3,7 @@
 namespace Contracts
 {
     [DataContract]
-    public class ReadFromMemoryRequest:BaseRequest
+    public class ReadFromMemoryRequest : BaseRequest
     {
-         
     }
 }

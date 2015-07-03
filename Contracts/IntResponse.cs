@@ -3,7 +3,7 @@
 namespace Contracts
 {
     [DataContract]
-    public class IntResponse:BaseResponse
+    public class IntResponse : BaseResponse
     {
         [DataMember]
         public int Result { get; set; }

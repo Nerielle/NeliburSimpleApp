@@ -2,7 +2,7 @@
 
 namespace Nelibur.Commands
 {
-    public class AddToValueInMemoryCommand:ICommand<AddToValueInMemoryRequest>
+    public class AddToValueInMemoryCommand : ICommand<AddToValueInMemoryRequest>
     {
         public void Execute(AddToValueInMemoryRequest request)
         {

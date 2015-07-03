@@ -2,7 +2,7 @@
 
 namespace Nelibur.Commands
 {
-    public class CleanMemoryCommand:ICommand<CleanMemoryRequest>
+    public class CleanMemoryCommand : ICommand<CleanMemoryRequest>
     {
         public void Execute(CleanMemoryRequest request)
         {

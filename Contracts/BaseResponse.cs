@@ -2,7 +2,7 @@
 
 namespace Contracts
 {
-    [KnownType(typeof(IntResponse))]
+    [KnownType(typeof (IntResponse))]
     [DataContract]
     public class BaseResponse
     {

@@ -3,9 +3,9 @@
 namespace Contracts
 {
     [DataContract]
-    public class SaveInMemoryRequest:BaseRequest
+    public class SaveInMemoryRequest : BaseRequest
     {
-    [DataMember]
+        [DataMember]
         public int Value { get; set; }
     }
 }
