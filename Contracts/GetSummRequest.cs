@@ -3,7 +3,7 @@
 namespace Contracts
 {
     [DataContract]
-    public class GetSummRequest
+    public class GetSummRequest:BaseRequest
     {
         public GetSummRequest(int first, int second)
         {

@@ -11,17 +11,62 @@ namespace Client
         private static void Main(string[] args)
         {
             var client = new SoapServiceClient("SimpleSoapService");
-            for (;;)
+            var readMemoryCommand = Console.ReadLine();
+            BaseRequest request=ParseCommand(readMemoryCommand);
+            //for (;;)
+            //{
+            //    Console.WriteLine("Enter 2 integer values separated by comma..");
+            //    string[] values = Console.ReadLine().Split(',');
+
+            //    if (!CheckValues(values))
+            //    {
+            //        continue;
+            //    }
+            //    Calculate(client, values);
+            //}
+        }
+
+
+        private static BaseRequest ParseCommand(string commandFromConsole)
+        {
+            string[] values = commandFromConsole.Split(':');
+            if (!values.Any())
             {
-                Console.WriteLine("Enter 2 integer values separated by comma..");
-                string[] values = Console.ReadLine().Split(',');
-               
-                if (!CheckValues(values))
-                {
-                    continue;
-                }
-                Calculate(client, values);
+                throw new ArgumentException("Wrong command");
             }
+            if (MemoryCommands.CommandsArray.All(x => string.CompareOrdinal(x, values[0].Trim()) != 0))
+            {
+                throw new ArgumentException("Wrong command");
+            }
+            switch (values[0].Trim())
+            {
+                case MemoryCommands.Mc:
+                    {
+                        return new CleanMemoryRequest();
+                    }
+                case MemoryCommands.Mr:
+                    {
+                        return new ReadFromMemoryRequest();
+                    }
+                case MemoryCommands.Ms:
+                    {
+                        int val;
+                        if (values.Count() == 1)
+                        {
+                            throw new ArgumentException("Value");
+                        }
+                        if (!int.TryParse(values[1], out val))
+                        {
+                            throw new ArgumentException("Not integer");
+                        }
+                        return new SaveInMemoryRequest(){Value = val};
+                    }
+                default:
+                    {
+                        throw new NotImplementedException();
+                    }
+            }
+            
         }
 
         private static void Calculate(SoapServiceClient client, IList<string> values)
@@ -40,5 +85,16 @@ namespace Client
             int result;
             return values.All(x => int.TryParse(x, out result));
         }
+
+       static class  MemoryCommands
+       {
+           public const string Ms = "MS";
+           public const string Mp = "M+";
+           public const string Mm = "M-";
+           public const string Mc = "MC";
+           public const string Mr = "MR";
+           public static string[] CommandsArray=new string[]{Ms,Mp,Mm,Mc,Mr};
+       }
+
     }
 }
