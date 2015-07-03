@@ -54,8 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\SaveValueCommand.cs" />
+    <Compile Include="Memory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\IQuery.cs" />
+    <Compile Include="Queries\ReadValueFromMemoryQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

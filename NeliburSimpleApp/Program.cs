@@ -10,7 +10,12 @@ namespace Nelibur
     {
         static Program()
         {
-            NeliburSoapService.Configure(x => x.Bind<GetSummRequest, Calculator>());
+            NeliburSoapService.Configure(x =>
+                {
+                    x.Bind<GetSummRequest, Calculator>();
+                    x.Bind<SaveInMemoryRequest, Calculator>();
+                    x.Bind<ReadFromMemoryRequest, Calculator>();
+                });
         }
 
         private static void Main(string[] args)
