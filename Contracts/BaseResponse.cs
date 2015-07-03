@@ -2,10 +2,9 @@
 
 namespace Contracts
 {
+    [KnownType(typeof(IntResponse))]
     [DataContract]
-    public class SummResponse
+    public class BaseResponse
     {
-        [DataMember]
-        public int Result { get; set; }
     }
 }

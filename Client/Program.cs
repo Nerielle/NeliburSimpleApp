@@ -72,7 +72,7 @@ namespace Client
         private static void Calculate(SoapServiceClient client, IList<string> values)
         {
             var sumValuesRequest = new GetSummRequest(int.Parse(values[0]), int.Parse(values[1]));
-            var response = client.Get<SummResponse>(sumValuesRequest);
+            var response = client.Get<IntResponse>(sumValuesRequest);
             Console.WriteLine("Sum: {0}", response.Result);
         }
 

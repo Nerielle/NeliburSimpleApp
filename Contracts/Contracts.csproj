@@ -41,12 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRequest.cs" />
+    <Compile Include="BaseResponse.cs" />
     <Compile Include="CleanMemoryRequest.cs" />
     <Compile Include="GetSummRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadFromMemoryRequest.cs" />
     <Compile Include="SaveInMemoryRequest.cs" />
-    <Compile Include="SummResponse.cs" />
+    <Compile Include="IntResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
