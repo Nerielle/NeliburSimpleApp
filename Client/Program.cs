@@ -8,7 +8,7 @@ namespace Client
 {
     internal class Program
     {
-        static SoapServiceClient client;
+        private static SoapServiceClient client;
 
         private static void Main(string[] args)
         {
@@ -18,7 +18,7 @@ namespace Client
             while (true)
             {
                 Console.WriteLine("Enter command..");
-                var readMemoryCommand = Console.ReadLine();
+                string readMemoryCommand = Console.ReadLine();
                 try
                 {
                     string[] values = ParseCommand(readMemoryCommand);
@@ -40,7 +40,6 @@ namespace Client
             //    }
             //    Calculate(client, values);
             //}
-            
         }
 
 
@@ -64,19 +63,18 @@ namespace Client
                     }
                 case MemoryCommands.Ms:
                     {
-                        int val;
-                        if (values.Count() == 1)
-                        {
-                            throw new ArgumentException("Value");
-                        }
-                        if (!int.TryParse(values[1], out val))
-                        {
-                            throw new ArgumentException("Not integer");
-                        }
-                        
-                        var request = new SaveInMemoryRequest(){Value = val};
+                        var val = GetIntValueFromCommand(values);
+
+                        var request = new SaveInMemoryRequest {Value = val};
                         client.Post(request);
                         Console.WriteLine("Value saved in memory.");
+                        break;
+                    }
+                case MemoryCommands.Mp:
+                    {
+                        var val = GetIntValueFromCommand(values);
+                        client.Post(new AddToValueInMemoryRequest(){Value = val});
+                        Console.WriteLine("{0} was added to the value in memory.", val );
                         break;
                     }
                 default:
@@ -86,14 +84,30 @@ namespace Client
             }
         }
 
+        private static int GetIntValueFromCommand(string[] values)
+        {
+            int val;
+            if (values.Count() == 1)
+            {
+                throw new ArgumentException("Value");
+            }
+            if (!int.TryParse(values[1], out val))
+            {
+                throw new ArgumentException("Not integer");
+            }
+            return val;
+        }
+
         private static string[] ParseCommand(string commandFromConsole)
         {
-            string[] values = commandFromConsole.Split(':');
+            string[] values = commandFromConsole.Split(' ');
             if (!values.Any())
             {
                 throw new ArgumentException("Wrong command");
             }
-            if (MemoryCommands.CommandsArray.All(x => string.Compare(x, values[0].Trim(), StringComparison.InvariantCultureIgnoreCase) != 0))
+            if (
+                MemoryCommands.CommandsArray.All(
+                    x => string.Compare(x, values[0], StringComparison.InvariantCultureIgnoreCase) != 0))
             {
                 throw new ArgumentException("Wrong command");
             }
@@ -117,15 +131,14 @@ namespace Client
             return values.All(x => int.TryParse(x, out result));
         }
 
-       static class  MemoryCommands
-       {
-           public const string Ms = "MS";
-           public const string Mp = "M+";
-           public const string Mm = "M-";
-           public const string Mc = "MC";
-           public const string Mr = "MR";
-           public static string[] CommandsArray=new[]{Ms,Mp,Mm,Mc,Mr};
-       }
-
+        private static class MemoryCommands
+        {
+            public const string Ms = "MS";
+            public const string Mp = "M+";
+            public const string Mm = "M-";
+            public const string Mc = "MC";
+            public const string Mr = "MR";
+            public static readonly string[] CommandsArray = new[] {Ms, Mp, Mm, Mc, Mr};
+        }
     }
 }

@@ -6,6 +6,7 @@ namespace Contracts
     [KnownType(typeof(CleanMemoryRequest))]
     [KnownType(typeof(SaveInMemoryRequest))]
     [KnownType(typeof(ReadFromMemoryRequest))]
+    [KnownType(typeof(AddToValueInMemoryRequest))]
     [DataContract]
     public class BaseRequest
     {

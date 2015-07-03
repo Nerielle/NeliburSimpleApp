@@ -8,7 +8,9 @@ namespace Nelibur
     public class Calculator : IGet<GetSummRequest>,
         IGet<ReadFromMemoryRequest>,
         IPostOneWay<SaveInMemoryRequest>,
-        IPostOneWay<CleanMemoryRequest>
+        IPostOneWay<CleanMemoryRequest>,
+        IPostOneWay<AddToValueInMemoryRequest>
+
     {
         public object Get(GetSummRequest request)
         {
@@ -28,6 +30,11 @@ namespace Nelibur
         public void PostOneWay(CleanMemoryRequest request)
         {
             new CleanMemoryCommand().Execute(request);
+        }
+
+        public void PostOneWay(AddToValueInMemoryRequest request)
+        {
+            new AddToValueInMemoryCommand().Execute(request);
         }
     }
 }
