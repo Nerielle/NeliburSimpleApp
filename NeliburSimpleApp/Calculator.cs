@@ -5,7 +5,10 @@ using Nelibur.ServiceModel.Services.Operations;
 
 namespace Nelibur
 {
-    public class Calculator : IGet<GetSummRequest>,IGet<ReadFromMemoryRequest>,IPostOneWay<SaveInMemoryRequest>
+    public class Calculator : IGet<GetSummRequest>,
+        IGet<ReadFromMemoryRequest>,
+        IPostOneWay<SaveInMemoryRequest>,
+        IPostOneWay<CleanMemoryRequest>
     {
         public object Get(GetSummRequest request)
         {
@@ -20,6 +23,11 @@ namespace Nelibur
         public void PostOneWay(SaveInMemoryRequest request)
         {
             new SaveValueCommand().Execute(request);
+        }
+
+        public void PostOneWay(CleanMemoryRequest request)
+        {
+            new CleanMemoryCommand().Execute(request);
         }
     }
 }

@@ -8,11 +8,27 @@ namespace Client
 {
     internal class Program
     {
+        static SoapServiceClient client;
+
         private static void Main(string[] args)
         {
-            var client = new SoapServiceClient("SimpleSoapService");
-            var readMemoryCommand = Console.ReadLine();
-            BaseRequest request=ParseCommand(readMemoryCommand);
+            client = new SoapServiceClient("SimpleSoapService");
+
+
+            while (true)
+            {
+                Console.WriteLine("Enter command..");
+                var readMemoryCommand = Console.ReadLine();
+                try
+                {
+                    string[] values = ParseCommand(readMemoryCommand);
+                    ProcessRequest(values);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
             //for (;;)
             //{
             //    Console.WriteLine("Enter 2 integer values separated by comma..");
@@ -24,29 +40,27 @@ namespace Client
             //    }
             //    Calculate(client, values);
             //}
+            
         }
 
 
-        private static BaseRequest ParseCommand(string commandFromConsole)
+        private static void ProcessRequest(string[] values)
         {
-            string[] values = commandFromConsole.Split(':');
-            if (!values.Any())
-            {
-                throw new ArgumentException("Wrong command");
-            }
-            if (MemoryCommands.CommandsArray.All(x => string.CompareOrdinal(x, values[0].Trim()) != 0))
-            {
-                throw new ArgumentException("Wrong command");
-            }
             switch (values[0].Trim())
             {
                 case MemoryCommands.Mc:
                     {
-                        return new CleanMemoryRequest();
+                        var request = new CleanMemoryRequest();
+                        client.Post(request);
+                        Console.WriteLine("The memory is cleared..");
+                        break;
                     }
                 case MemoryCommands.Mr:
                     {
-                        return new ReadFromMemoryRequest();
+                        var request = new ReadFromMemoryRequest();
+                        var response = client.Get<IntResponse>(request);
+                        Console.WriteLine("Value from memory: {0}", response.Result);
+                        break;
                     }
                 case MemoryCommands.Ms:
                     {
@@ -59,17 +73,34 @@ namespace Client
                         {
                             throw new ArgumentException("Not integer");
                         }
-                        return new SaveInMemoryRequest(){Value = val};
+                        
+                        var request = new SaveInMemoryRequest(){Value = val};
+                        client.Post(request);
+                        Console.WriteLine("Value saved in memory.");
+                        break;
                     }
                 default:
                     {
                         throw new NotImplementedException();
                     }
             }
-            
         }
 
-        private static void Calculate(SoapServiceClient client, IList<string> values)
+        private static string[] ParseCommand(string commandFromConsole)
+        {
+            string[] values = commandFromConsole.Split(':');
+            if (!values.Any())
+            {
+                throw new ArgumentException("Wrong command");
+            }
+            if (MemoryCommands.CommandsArray.All(x => string.Compare(x, values[0].Trim(), StringComparison.InvariantCultureIgnoreCase) != 0))
+            {
+                throw new ArgumentException("Wrong command");
+            }
+            return values;
+        }
+
+        private static void Calculate(IList<string> values)
         {
             var sumValuesRequest = new GetSummRequest(int.Parse(values[0]), int.Parse(values[1]));
             var response = client.Get<IntResponse>(sumValuesRequest);
@@ -93,7 +124,7 @@ namespace Client
            public const string Mm = "M-";
            public const string Mc = "MC";
            public const string Mr = "MR";
-           public static string[] CommandsArray=new string[]{Ms,Mp,Mm,Mc,Mr};
+           public static string[] CommandsArray=new[]{Ms,Mp,Mm,Mc,Mr};
        }
 
     }

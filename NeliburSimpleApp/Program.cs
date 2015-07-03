@@ -15,6 +15,7 @@ namespace Nelibur
                     x.Bind<GetSummRequest, Calculator>();
                     x.Bind<SaveInMemoryRequest, Calculator>();
                     x.Bind<ReadFromMemoryRequest, Calculator>();
+                    x.Bind<CleanMemoryRequest, Calculator>();
                 });
         }
 
