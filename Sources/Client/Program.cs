@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Contracts;
 using Nelibur.ServiceModel.Clients;
 
 namespace Client
 {
-    internal class Program
+    internal static class Program
     {
         private static SoapServiceClient client;
 
@@ -29,17 +28,6 @@ namespace Client
                     Console.WriteLine(e.Message);
                 }
             }
-            //for (;;)
-            //{
-            //    Console.WriteLine("Enter 2 integer values separated by comma..");
-            //    string[] values = Console.ReadLine().Split(',');
-
-            //    if (!CheckValues(values))
-            //    {
-            //        continue;
-            //    }
-            //    Calculate(client, values);
-            //}
         }
 
 
@@ -112,33 +100,6 @@ namespace Client
                 throw new ArgumentException("Wrong command");
             }
             return values;
-        }
-
-        private static void Calculate(IList<string> values)
-        {
-            var sumValuesRequest = new GetSummRequest(int.Parse(values[0]), int.Parse(values[1]));
-            var response = client.Get<IntResponse>(sumValuesRequest);
-            Console.WriteLine("Sum: {0}", response.Result);
-        }
-
-        private static bool CheckValues(IList<string> values)
-        {
-            if (values.Count() != 2)
-            {
-                return false;
-            }
-            int result;
-            return values.All(x => int.TryParse(x, out result));
-        }
-
-        private static class MemoryCommands
-        {
-            public const string Ms = "MS";
-            public const string Mp = "M+";
-            public const string Mm = "M-";
-            public const string Mc = "MC";
-            public const string Mr = "MR";
-            public static readonly string[] CommandsArray = new[] {Ms, Mp, Mm, Mc, Mr};
         }
     }
 }
