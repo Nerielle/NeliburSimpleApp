@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 using Contracts;
 using Nelibur.ServiceModel.Services;
 using Nelibur.ServiceModel.Services.Default;
@@ -22,7 +23,7 @@ namespace Nelibur
 
         private static void Main(string[] args)
         {
-            var service = new ServiceHost(typeof (SoapServicePerCall));
+            var service = new WebServiceHost(typeof(JsonServicePerCall));
             service.Open();
 
             Console.WriteLine("Service is running");

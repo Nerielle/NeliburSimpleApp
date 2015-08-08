@@ -7,11 +7,11 @@ namespace Client
 {
     internal static class Program
     {
-        private static SoapServiceClient client;
+        private static ClientService client;
 
         private static void Main(string[] args)
         {
-            client = new SoapServiceClient("SimpleSoapService");
+            client = new ClientService();
 
 
             while (true)
@@ -37,32 +37,24 @@ namespace Client
             {
                 case MemoryCommands.Mc:
                     {
-                        var request = new CleanMemoryRequest();
-                        client.Delete(request);
-                        Console.WriteLine("The memory is cleared..");
+                        client.Clean();
                         break;
                     }
                 case MemoryCommands.Mr:
                     {
-                        var request = new ReadFromMemoryRequest();
-                        var response = client.Get<IntResponse>(request);
-                        Console.WriteLine("Value from memory: {0}", response.Result);
+                        client.Read();
                         break;
                     }
                 case MemoryCommands.Ms:
                     {
                         int val = GetIntValueFromCommand(values);
-
-                        var request = new SaveInMemoryRequest {Value = val};
-                        client.Post(request);
-                        Console.WriteLine("Value saved in memory.");
+                        client.Save(val);
                         break;
                     }
                 case MemoryCommands.Mp:
                     {
                         int val = GetIntValueFromCommand(values);
-                        client.Put(new AddToValueInMemoryRequest {Value = val});
-                        Console.WriteLine("{0} was added to the value in memory.", val);
+                        client.Plus(val);
                         break;
                     }
                 default:

@@ -32,15 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nelibur, Version=3.0.3.221, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nelibur.3.1.4\lib\net45\Nelibur.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Nelibur">
+      <HintPath>..\..\packages\Nelibur.3.1.6\lib\net45\Nelibur.dll</HintPath>
     </Reference>
-    <Reference Include="Nelibur.Sword, Version=3.0.3.221, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nelibur.Sword.3.1.4\lib\net45\Nelibur.Sword.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Nelibur.Sword">
+      <HintPath>..\..\packages\Nelibur.Sword.3.1.6\lib\net45\Nelibur.Sword.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,12 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientService.cs" />
+    <Compile Include="MemoryCommands.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
