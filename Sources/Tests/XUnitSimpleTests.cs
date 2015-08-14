@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Tests
 {
     public class XUnitSimpleTests
     {
+        private readonly ITestOutputHelper output;
+
+        public XUnitSimpleTests(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
+
         public static IEnumerable<object[]> TestData => new[]
         {
             new object[]
@@ -22,6 +30,8 @@ namespace Tests
         [Fact]
         public void PositiveTest()
         {
+            var comment = "Positive test";
+            output.WriteLine(comment);
             Assert.Equal(7, Add(3, 4));
         }
 
